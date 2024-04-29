@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TravelRecords.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctrl="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+        xmlns:travelRecords="clr-namespace:TravelRecords"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="TravelRecords.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="TravelRecords">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Width" Value="100" />
+        </Style>
+    </Window.Styles>
+
+    <StackPanel>
+        <travelRecords:Login Name="Login" ZIndex="1"/>
+        <TextBlock Text="{Binding Test}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <ctrl:Card>
+            <StackPanel>
+                <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Button Command="{Binding ToggleEnabled}">Test Button</Button>
+                <Label IsVisible="{Binding IsEnabled}">I am Here!</Label>
+            </StackPanel>
+        </ctrl:Card>
+    </StackPanel>
+
+</Window>
