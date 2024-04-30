@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace TravelRecords;
+namespace TravelRecords.Views;
 
 public partial class LoginView : UserControl
 {
