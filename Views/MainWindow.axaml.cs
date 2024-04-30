@@ -6,28 +6,26 @@ namespace TravelRecords.Views;
 
 public partial class MainWindow : Window
 {
-    private Login _mLogin;
 
-    private void SetLoginSize(Size size)
-    {
-        if (_mLogin.IsVisible)
-        {
-            _mLogin.Width = size.Width;
-            _mLogin.Height = size.Height;
-        }
-    }
-    
-    private void ToggleLoginVisibility()
-    {
-        _mLogin.IsVisible = !_mLogin.IsVisible;
-    }
+    // private void UpdateLoginMenuSize(Size size)
+    // {
+    //     if (LoginMenu.IsVisible)
+    //     {
+    //         LoginMenu.Width = size.Width;
+    //         LoginMenu.Height = size.Height;
+    //     }
+    // }
+    //
+    // private void ToggleLoginMenuVisibility()
+    // {
+    //     LoginMenu.IsVisible = !LoginMenu.IsVisible;
+    // }
 
     public MainWindow()
     {
         InitializeComponent();
-        _mLogin = this.GetControl<Login>("Login");
-        this.GetObservable(ClientSizeProperty).Subscribe(SetLoginSize);
-        _mLogin.GetControl<Button>("LoginButton").Click += (sender, e) => ToggleLoginVisibility();
-        _mLogin.GetControl<Button>("RegisterButton").Click += (sender, e) => ToggleLoginVisibility();
+        // this.GetObservable(ClientSizeProperty).Subscribe(UpdateLoginMenuSize);
+        // LoginMenu.GetControl<Button>("LoginButton").Click += (sender, e) => ToggleLoginMenuVisibility();
+        // LoginMenu.GetControl<Button>("RegisterButton").Click += (sender, e) => ToggleLoginMenuVisibility();
     }
 }

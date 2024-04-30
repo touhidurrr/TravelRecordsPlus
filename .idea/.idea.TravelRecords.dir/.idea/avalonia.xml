@@ -7,6 +7,8 @@
         <entry key="Views/Login.axaml" value="TravelRecords.csproj" />
         <entry key="Views/MainWindow.axaml" value="TravelRecords.csproj" />
         <entry key="Views/Test.axaml" value="TravelRecords.csproj" />
+        <entry key="Views/Test2View.axaml" value="TravelRecords.csproj" />
+        <entry key="Views/TestPage.axaml" value="TravelRecords.csproj" />
       </map>
     </option>
   </component>

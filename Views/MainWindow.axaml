@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctrl="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
         xmlns:travelRecords="clr-namespace:TravelRecords"
+        xmlns:models="clr-namespace:TravelRecords.Models"
+        xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
         x:Class="TravelRecords.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -24,20 +26,36 @@
         </Style>
     </Window.Styles>
 
-    <StackPanel>
-        <travelRecords:Login Name="Login" ZIndex="1"/>
-        <TextBlock Text="{Binding Test}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <ctrl:Card>
-            <StackPanel>
-                <Button Content="Click Me" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Button Command="{Binding ToggleEnabled}">Test Button</Button>
-                <Label IsVisible="{Binding IsEnabled}">I am Here!</Label>
-            </StackPanel>
-        </ctrl:Card>
-    </StackPanel>
+
+    <Grid ColumnDefinitions="Auto, *" ShowGridLines="True">
+        <Grid RowDefinitions="*, Auto">
+            <ListBox Grid.Row="0" 
+                     SelectionMode="Single,Toggle,AlwaysSelected"
+                     ItemsSource="{Binding Items}"
+                     SelectedItem="{Binding SelectedPageItem}">
+                <ListBox.Styles>
+                    <Style Selector="ListBoxItem">
+                        <Setter Property="Padding" Value="12 8"></Setter>
+                    </Style>
+                </ListBox.Styles>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:ListItemTemplate}">
+                        <StackPanel Spacing="17" Orientation="Horizontal">
+                            <materialIcons:MaterialIcon Kind="{Binding IconKind}" />
+                            <TextBlock Text="{Binding Label}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        
+
+        <StackPanel Grid.Column="1">
+            <TransitioningContentControl Content="{Binding CurrentPage}" />
+        </StackPanel>
+        
+        <!-- <travelRecords:LoginView  -->
+        <!--     x:Name="LoginMenu" ZIndex="1" IsVisible="False"/> -->
+    </Grid>
 
 </Window>
