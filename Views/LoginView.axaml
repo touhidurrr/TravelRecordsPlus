@@ -2,16 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:vm="using:TravelRecords.ViewModels"
+             xmlns:mi="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
-             x:Class="TravelRecords.Views.LoginView">
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+             x:Class="TravelRecords.Views.LoginView"
+             x:DataType="vm:LoginViewModel">
 
     <UserControl.Styles>
         <Style Selector="TextBox">
             <Setter Property="Width" Value="250" />
         </Style>
-        <Style Selector="materialIcons|MaterialIcon">
+        <Style Selector="mi|MaterialIcon">
             <Setter Property="Height" Value="30" />
             <Setter Property="Width" Value="30" />
             <Setter Property="Margin" Value="0 5 5 0" />
@@ -20,20 +22,20 @@
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                 Margin="0 0 0 30">
-        <materialIcons:MaterialIcon Kind="User" Foreground="Red" Height="80" Width="80" Margin="0" />
+        <mi:MaterialIcon Kind="User" Foreground="Red" Height="80" Width="80" Margin="0" />
         <TabControl>
             <TabControl.Items>
                 <TabItem Header="Login">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Margin="0 10 0 0">
                         <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
-                            <materialIcons:MaterialIcon Grid.Row="0" Grid.Column="0" Kind="User" />
+                            <mi:MaterialIcon Grid.Row="0" Grid.Column="0" Kind="User" />
                             <TextBox Grid.Row="0" Grid.Column="1"
                                      UseFloatingWatermark="True" Classes="outline dense clearButton"
                                      Theme="{StaticResource OutlineTextBox}"
                                      p1:TextFieldAssist.Label="Username or email" />
 
-                            <materialIcons:MaterialIcon Grid.Row="1" Grid.Column="0" Kind="Password" />
+                            <mi:MaterialIcon Grid.Row="1" Grid.Column="0" Kind="Password" />
                             <TextBox Grid.Row="1" Grid.Column="1"
                                      UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
                                      Theme="{StaticResource OutlineTextBox}"
@@ -43,7 +45,8 @@
                             Name="LoginButton"
                             Background="SkyBlue" Margin="12" Width="100"
                             Classes="accent" Content="LOGIN"
-                            ToolTip.Tip="Button with classes" />
+                            ToolTip.Tip="Button with classes"
+                            Command="{Binding LoginCommand}" />
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Register">
@@ -52,35 +55,35 @@
                         <Grid ColumnDefinitions="Auto, *"
                               RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
                             <!-- Name -->
-                            <materialIcons:MaterialIcon Grid.Row="0" Grid.Column="0" Kind="User" />
+                            <mi:MaterialIcon Grid.Row="0" Grid.Column="0" Kind="User" />
                             <TextBox Grid.Row="0" Grid.Column="1"
                                      UseFloatingWatermark="True" Classes="outline dense clearButton"
                                      Theme="{StaticResource OutlineTextBox}"
                                      p1:TextFieldAssist.Label="Name" />
 
                             <!-- Email -->
-                            <materialIcons:MaterialIcon Grid.Row="1" Grid.Column="0" Kind="Email" />
+                            <mi:MaterialIcon Grid.Row="1" Grid.Column="0" Kind="Email" />
                             <TextBox Grid.Row="1" Grid.Column="1"
                                      UseFloatingWatermark="True" Classes="outline dense clearButton"
                                      Theme="{StaticResource OutlineTextBox}"
                                      p1:TextFieldAssist.Label="Email" />
 
                             <!-- Username -->
-                            <materialIcons:MaterialIcon Grid.Row="2" Grid.Column="0" Kind="UserBadge" />
+                            <mi:MaterialIcon Grid.Row="2" Grid.Column="0" Kind="UserBadge" />
                             <TextBox Grid.Row="2" Grid.Column="1"
                                      UseFloatingWatermark="True" Classes="outline dense clearButton"
                                      Theme="{StaticResource OutlineTextBox}"
                                      p1:TextFieldAssist.Label="Username" />
 
                             <!-- Password -->
-                            <materialIcons:MaterialIcon Grid.Row="3" Grid.Column="0" Kind="Password" />
+                            <mi:MaterialIcon Grid.Row="3" Grid.Column="0" Kind="Password" />
                             <TextBox Grid.Row="3" Grid.Column="1"
                                      UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
                                      Theme="{StaticResource OutlineTextBox}"
                                      p1:TextFieldAssist.Label="Password" PasswordChar="*" />
 
                             <!-- Confirm Password -->
-                            <materialIcons:MaterialIcon Grid.Row="4" Grid.Column="0" Kind="Password" />
+                            <mi:MaterialIcon Grid.Row="4" Grid.Column="0" Kind="Password" />
                             <TextBox Grid.Row="4" Grid.Column="1"
                                      UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
                                      Theme="{StaticResource OutlineTextBox}"
@@ -91,7 +94,8 @@
                             Name="RegisterButton"
                             Background="SkyBlue" Margin="12" Width="100"
                             Classes="accent" Content="REGISTER"
-                            ToolTip.Tip="Button with classes" />
+                            ToolTip.Tip="Button with classes"
+                            Command="{Binding LoginCommand}" />
                     </StackPanel>
                 </TabItem>
             </TabControl.Items>
