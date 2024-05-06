@@ -15,7 +15,7 @@ public partial class DashboardViewModel : ViewModelBase
 {
     private Rest _rest;
 
-    public ObservableCollection<Account> Accounts { get; set; }
+    public ObservableCollection<Account> Accounts { get; }
 
     public DashboardViewModel(Rest rest = null!)
     {
@@ -23,12 +23,20 @@ public partial class DashboardViewModel : ViewModelBase
 
         Accounts = new ObservableCollection<Account>();
 
-        _ = _rest.DoAfterUserIsAvailable(() =>
+        _ = _rest.DoAfterUserIsAvailable(async () =>
         {
-            _rest.GetAccounts().ContinueWith(result =>
+            try
             {
-                Accounts = new ObservableCollection<Account>(result.Result ?? Array.Empty<Account>());
-            });
+                var accounts = await _rest.GetAccounts();
+                Console.WriteLine(accounts);
+                if (accounts != null)
+                    foreach (var account in accounts)
+                        Accounts.Add(account);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         });
     }
 

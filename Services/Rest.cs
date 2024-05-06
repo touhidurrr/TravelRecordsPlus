@@ -71,7 +71,7 @@ public class Rest
     {
         var request = new RestRequest("/users/{userId}/accounts")
             .AddUrlSegment("userId", _user.id);
-        return await _client.PostAsync<Account[]>(request);
+        return await _client.GetAsync<Account[]>(request);
     }
 
     public async Task<Account?> AddAccount(AddAccountInputs addAccountInputs)
