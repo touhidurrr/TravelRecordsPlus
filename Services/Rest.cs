@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using RestSharp;
+using TravelRecords.Models;
 
 namespace TravelRecords.Services;
 
@@ -16,6 +17,11 @@ public record RegisterInputs(
 public record User(int id, string name, string email, string username);
 
 public record LoginResponse(User user, string token);
+
+public record AddAccountInputs(
+    string name,
+    float balance
+);
 
 public class Rest
 {
@@ -59,5 +65,20 @@ public class Rest
         var request = new RestRequest("/register", Method.Post)
             .AddJsonBody(regInputs);
         return await _client.PostAsync<LoginResponse>(request);
+    }
+
+    public async Task<Account[]?> GetAccounts()
+    {
+        var request = new RestRequest("/users/{userId}/accounts")
+            .AddUrlSegment("userId", _user.id);
+        return await _client.PostAsync<Account[]>(request);
+    }
+
+    public async Task<Account?> AddAccount(AddAccountInputs addAccountInputs)
+    {
+        var request = new RestRequest("/users/{userId}/accounts/add", Method.Post)
+            .AddUrlSegment("userId", _user.id)
+            .AddJsonBody(addAccountInputs);
+        return await _client.PostAsync<Account>(request);
     }
 }

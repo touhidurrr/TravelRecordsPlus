@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using TravelRecords.Models;
@@ -21,8 +20,7 @@ public partial class MainViewModel : ViewModelBase
 
         Items = new ObservableCollection<ListItemTemplate>(new[]
         {
-            new ListItemTemplate("Test", "Test", new TestViewModel(_rest)),
-            new ListItemTemplate("Test 2", "Work", new TestViewModel(_rest)),
+            new ListItemTemplate("Dashboard", "Dashboard", new DashboardViewModel(_rest)),
             new ListItemTemplate("Profile", "Profile", new ProfileViewModel(_rest))
         });
 

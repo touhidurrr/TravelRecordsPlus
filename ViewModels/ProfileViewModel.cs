@@ -14,7 +14,7 @@ public partial class ProfileViewModel : ViewModelBase
     public ProfileViewModel(Rest rest)
     {
         _rest = rest;
-        rest.DoAfterUserIsAvailable(() =>
+        _ = rest.DoAfterUserIsAvailable(() =>
         {
             User user = _rest.GetUser();
             Name = user.name;
