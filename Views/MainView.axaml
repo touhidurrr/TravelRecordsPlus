@@ -5,13 +5,10 @@
              xmlns:vm="using:TravelRecords.ViewModels"
              xmlns:models="clr-namespace:TravelRecords.Models"
              xmlns:mi="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:ctrl="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="TravelRecords.Views.MainView"
              x:DataType="vm:MainViewModel">
-
-    <UserControl.DataContext>
-        <vm:MainViewModel />
-    </UserControl.DataContext>
 
     <UserControl.Styles>
         <Style Selector="Button">
@@ -22,26 +19,37 @@
 
     <Grid ColumnDefinitions="Auto, *" ShowGridLines="True">
         <ListBox Grid.Column="0"
+                 MinWidth="120"
                  SelectionMode="Single,Toggle,AlwaysSelected"
                  ItemsSource="{Binding Items}"
                  SelectedItem="{Binding SelectedPageItem}">
             <ListBox.Styles>
                 <Style Selector="ListBoxItem">
-                    <Setter Property="Padding" Value="12 8" />
+                    <Setter Property="Padding" Value="12 10" />
+                </Style>
+                <Style Selector="ListBoxItem:selected Border">
+                    <Setter Property="Margin" Value="2 2 0 2 " />
+                    <Setter Property="CornerRadius" Value="10 0 0 10" />
                 </Style>
             </ListBox.Styles>
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:ListItemTemplate}">
-                    <Grid ColumnDefinitions="Auto, *">
-                        <mi:MaterialIcon Grid.Column="0" Margin="0 0 5 0" Kind="{Binding IconKind}" />
-                        <TextBlock Grid.Column="1" Text="{Binding Label}" />
-                    </Grid>
+                    <Border>
+                        <Grid ColumnDefinitions="Auto, *">
+                            <mi:MaterialIcon Grid.Column="0" Margin="0 0 5 0" Kind="{Binding IconKind}" />
+                            <TextBlock Grid.Column="1" Text="{Binding Label}" />
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Column="1">
-            <TransitioningContentControl Content="{Binding CurrentPage}" />
-        </StackPanel>
+        <Grid Grid.Column="1" RowDefinitions="Auto, *">
+            <TextBlock Grid.Row="0" Classes="Headline5" Margin="5 5 0 0"
+                       Text="{Binding SelectedPageItem.Label}" />
+            <ctrl:Card Grid.Row="1" Padding="5" Margin="5">
+                <TransitioningContentControl Grid.Row="1" Content="{Binding SelectedPageItem.ViewModel}" />
+            </ctrl:Card>
+        </Grid>
     </Grid>
 </UserControl>

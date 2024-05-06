@@ -1,42 +1,36 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using TravelRecords.Models;
+using TravelRecords.Services;
 
 namespace TravelRecords.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    [ObservableProperty] private ViewModelBase _currentPage = new TestViewModel();
+    private Rest _rest;
 
     [ObservableProperty] private ListItemTemplate _selectedPageItem;
 
-    private readonly List<ListItemTemplate> _listItemTemplates =
-    [
-        new ListItemTemplate("Test", "Test", new TestViewModel()),
-        new ListItemTemplate("Test 2", "Work", new TestViewModel()),
-    ];
 
     public ObservableCollection<ListItemTemplate> Items { get; }
 
-    [ObservableProperty] private bool _showLogin = true;
-
-    public MainViewModel()
+    public MainViewModel(Rest rest = null!)
     {
-        Items = new ObservableCollection<ListItemTemplate>(_listItemTemplates);
+        _rest = rest;
+
+        Items = new ObservableCollection<ListItemTemplate>(new[]
+        {
+            new ListItemTemplate("Test", "Test", new TestViewModel(_rest)),
+            new ListItemTemplate("Test 2", "Work", new TestViewModel(_rest)),
+            new ListItemTemplate("Profile", "Profile", new ProfileViewModel(_rest))
+        });
+
         SelectedPageItem = Items[0];
-        CurrentPage = SelectedPageItem.ViewModel;
     }
 
     partial void OnSelectedPageItemChanged(ListItemTemplate value)
     {
         SelectedPageItem = value;
-        CurrentPage = SelectedPageItem.ViewModel;
     }
-
-    [ObservableProperty] private bool _isLoggedIn = false;
-
-    [RelayCommand]
-    private void ToggleLogin() => IsLoggedIn = !IsLoggedIn;
 }

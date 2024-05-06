@@ -1,0 +1,85 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:TravelRecords.ViewModels"
+             xmlns:mi="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+             x:Class="TravelRecords.Views.ProfileView"
+             x:DataType="vm:ProfileViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="MinWidth" Value="300" />
+            <Setter Property="MaxWidth" Value="500" />
+            <Setter Property="Margin" Value="0 0 0 0" />
+        </Style>
+        <Style Selector="mi|MaterialIcon">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Margin" Value="0 5 5 0" />
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel
+        Spacing="10"
+        HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        <Grid
+            ShowGridLines="True"
+            ColumnDefinitions="Auto, *"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+            <!-- Name -->
+            <mi:MaterialIcon Grid.Row="0" Grid.Column="0" Kind="User" />
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Text="{Binding Name}"
+                     UseFloatingWatermark="True" Classes="outline dense clearButton"
+                     Theme="{StaticResource OutlineTextBox}"
+                     p1:TextFieldAssist.Label="Name" />
+
+            <!-- Email -->
+            <mi:MaterialIcon Grid.Row="1" Grid.Column="0" Kind="Email" />
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Text="{Binding Email}"
+                     UseFloatingWatermark="True" Classes="outline dense clearButton"
+                     Theme="{StaticResource OutlineTextBox}"
+                     p1:TextFieldAssist.Label="Email" />
+
+            <!-- Username -->
+            <mi:MaterialIcon Grid.Row="2" Grid.Column="0" Kind="UserBadge" />
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     IsEnabled="False"
+                     Text="{Binding Username}"
+                     UseFloatingWatermark="True" Classes="outline dense clearButton"
+                     Theme="{StaticResource OutlineTextBox}"
+                     p1:TextFieldAssist.Label="Username" />
+
+            <!-- Current Password -->
+            <mi:MaterialIcon Grid.Row="3" Grid.Column="0" Kind="Password" />
+            <TextBox Grid.Row="3" Grid.Column="1"
+                     UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
+                     Theme="{StaticResource OutlineTextBox}"
+                     p1:TextFieldAssist.Label="Current Password" PasswordChar="*" />
+
+            <!-- New Password -->
+            <mi:MaterialIcon Grid.Row="4" Grid.Column="0" Kind="PasswordAdd" />
+            <TextBox Grid.Row="4" Grid.Column="1"
+                     UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
+                     Theme="{StaticResource OutlineTextBox}"
+                     p1:TextFieldAssist.Label="New Password" PasswordChar="*" />
+
+            <!-- Confirm New Password -->
+            <mi:MaterialIcon Grid.Row="5" Grid.Column="0" Kind="PasswordSecure" />
+            <TextBox Grid.Row="5" Grid.Column="1"
+                     UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
+                     Theme="{StaticResource OutlineTextBox}"
+                     p1:TextFieldAssist.Label="Confirm New Password" PasswordChar="*" />
+        </Grid>
+
+        <Button Classes="light" Width="100" Content="Save"
+                ToolTip.Placement="RightEdgeAlignedTop"
+                ToolTip.Tip="Save Changes" />
+
+    </StackPanel>
+</UserControl>
