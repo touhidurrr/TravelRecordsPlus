@@ -5,120 +5,110 @@
              xmlns:ctrl="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="TravelRecords.Views.DashboardView">
-	<UserControl.Styles>
-		<Style Selector="TextBlock">
-			<Setter Property="VerticalAlignment" Value="Center"/>
-		</Style>
-	</UserControl.Styles>
-	<Grid Background="Beige" Margin="10">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="Auto"/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition></RowDefinition>
-			<RowDefinition></RowDefinition>
-			<RowDefinition></RowDefinition>
-		</Grid.RowDefinitions>
-		<!-- Accounts -->
-		<Grid Grid.Row="0" Grid.Column="0">
-			<StackPanel>
-				<ctrl:Card MinWidth="240" VerticalAlignment="Top">
-					<Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
-						<TextBlock Grid.Column="0" Classes="Headline6" Text="ACCOUNTS" 
-						           VerticalAlignment="Center" 
-						           FontWeight="SemiBold"
-						/>
-					
-						<ctrl:FloatingButton Grid.Column="1" Classes="Light" 
-						                     IsExtended="True" VerticalAlignment="Center"
-						                     Margin="30 0 0  0 "
-						                     Content="Add Account"
-						                     FontSize="15"
-						/>
-						
-						<StackPanel Grid.Row="1" >
-							<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-								
-								<TextBlock  Classes="Headline6" Text="Bkash" 
-								            FontWeight="SemiBold"
-								            VerticalAlignment="Center"
-								/>
-								<TextBlock  Classes="Body2" Text="1000"
-								            FontWeight="SemiBold"
-								            VerticalAlignment="Center"
-								/>
-								<TextBlock  Classes="Body3" Text="Taka"
-								            FontWeight="SemiBold"
-								            VerticalAlignment="Center"
-								            
-								/>
-							</StackPanel>
-						</StackPanel>
-						
-					</Grid>
-					
-				</ctrl:Card>
-			</StackPanel>
-		</Grid>
-		<!--  UPCOMING EVENTS -->
-		<Grid Grid.Column="1">
-			<StackPanel>
-				<ctrl:Card MinWidth="240" VerticalAlignment="Top">
-					<Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
-						<TextBlock Grid.Column="0" Classes="Headline6" Text=" UPCOMING EVENTS" 
-						           VerticalAlignment="Center" 
-						           FontWeight="SemiBold"
-						/>
-						
-					</Grid>
-				</ctrl:Card>
-			</StackPanel>
-			
-		</Grid>
-		<!-- CHART -->
-			
-		<!-- PLANS -->
-		<Grid Grid.Row="1" Grid.Column="0" Margin="0 5 0 0 ">
-			<StackPanel>
-				<ctrl:Card MinWidth="240" VerticalAlignment="Top">
-					<Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
-						<TextBlock Grid.Column="0" Classes="Headline6" Text="PLANS" 
-						           VerticalAlignment="Center" 
-						           FontWeight="SemiBold"
-						/>
-					
-						<ctrl:FloatingButton Grid.Column="1" Classes="Light" 
-						                     IsExtended="True" VerticalAlignment="Center"
-						                     Margin="30 0 0  0 "
-						                     Content="Add Plan"
-						                     FontSize="15"
-						/>
-						
-						
-					</Grid>
-					
-				</ctrl:Card>
-			</StackPanel>
-			
-		</Grid>
-		<!-- plan info -->
-		
-		<Grid Grid.Row="2" Grid.Column="1">
-			<ctrl:Card MinWidth="240" VerticalAlignment="Top">
-				<Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
-						<TextBlock Grid.Column="0" Classes="Headline6" Text="PLAN INFO" 
-						           VerticalAlignment="Center" 
-						           FontWeight="SemiBold"
-						/>
-						<TextBlock Grid.Row="1" Classes="Headline6" Text="PLAN NAME" 
-						           VerticalAlignment="Center" 
-						           FontWeight="SemiBold"
-						/>
-					
-					</Grid>
-			</ctrl:Card>
-				</Grid>
-		
-	</Grid>
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Styles>
+    <Grid Background="Beige" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- Accounts -->
+        <Grid Grid.Row="0" Grid.Column="0">
+            <StackPanel>
+                <ctrl:Card MinWidth="240" VerticalAlignment="Top">
+                    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
+                        <TextBlock Grid.Column="0" Classes="Headline6" Text="ACCOUNTS"
+                                   VerticalAlignment="Center"
+                                   FontWeight="SemiBold" />
+
+                        <ctrl:FloatingButton Grid.Column="1" Classes="Light"
+                                             IsExtended="True" VerticalAlignment="Center"
+                                             Margin="30 0 0  0 "
+                                             Content="Add Account"
+                                             FontSize="15" />
+
+                        <StackPanel Grid.Row="1">
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10"
+                                        VerticalAlignment="Center">
+
+                                <TextBlock Classes="Headline6" Text="Bkash"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body2" Text="1000"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body3" Text="Taka"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+
+                </ctrl:Card>
+            </StackPanel>
+        </Grid>
+        <!--  UPCOMING EVENTS -->
+        <Grid Grid.Column="1">
+            <StackPanel>
+                <ctrl:Card MinWidth="240" VerticalAlignment="Top">
+                    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
+                        <TextBlock Grid.Column="0" Classes="Headline6" Text=" UPCOMING EVENTS"
+                                   VerticalAlignment="Center"
+                                   FontWeight="SemiBold" />
+
+                    </Grid>
+                </ctrl:Card>
+            </StackPanel>
+
+        </Grid>
+        <!-- CHART -->
+
+        <!-- PLANS -->
+        <Grid Grid.Row="1" Grid.Column="0" Margin="0 5 0 0 ">
+            <StackPanel>
+                <ctrl:Card MinWidth="240" VerticalAlignment="Top">
+                    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
+                        <TextBlock Grid.Column="0" Classes="Headline6" Text="PLANS"
+                                   VerticalAlignment="Center"
+                                   FontWeight="SemiBold" />
+
+                        <ctrl:FloatingButton Grid.Column="1" Classes="Light"
+                                             IsExtended="True" VerticalAlignment="Center"
+                                             Margin="30 0 0  0 "
+                                             Content="Add Plan"
+                                             FontSize="15" />
+
+
+                    </Grid>
+
+                </ctrl:Card>
+            </StackPanel>
+
+        </Grid>
+        <!-- plan info -->
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <ctrl:Card MinWidth="240" VerticalAlignment="Top">
+                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto">
+                    <TextBlock Grid.Column="0" Classes="Headline6" Text="PLAN INFO"
+                               VerticalAlignment="Center"
+                               FontWeight="SemiBold" />
+                    <TextBlock Grid.Row="1" Classes="Headline6" Text="PLAN NAME"
+                               VerticalAlignment="Center"
+                               FontWeight="SemiBold" />
+
+                </Grid>
+            </ctrl:Card>
+        </Grid>
+
+    </Grid>
 </UserControl>
