@@ -1,5 +1,4 @@
 using System;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RestSharp;
 
@@ -26,8 +25,8 @@ public class Rest
 
     public async Task DoAfterUserIsAvailable(Action action)
     {
-            await this._waitForUserTaskSource.Task;
-            action();
+        await this._waitForUserTaskSource.Task;
+        action();
     }
 
     public Rest()

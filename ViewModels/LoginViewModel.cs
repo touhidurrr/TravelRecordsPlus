@@ -41,6 +41,7 @@ public partial class LoginViewModel(Rest rest) : ViewModelBase
         }
         catch (Exception e)
         {
+            Console.WriteLine(e);
             ShowErrorPopup("Unable to login");
         }
     }
@@ -63,7 +64,8 @@ public partial class LoginViewModel(Rest rest) : ViewModelBase
         LoginResponse? loginRes = null;
         try
         {
-            loginRes = await rest.Login(new LoginInputs(Username, Password));
+            loginRes = await rest.Register(new RegisterInputs(name: Name, email: Email, username: Username,
+                password: Password));
             Console.WriteLine(loginRes);
             rest.SetToken(loginRes!.token);
             rest.SetUser(loginRes.user);
@@ -71,6 +73,7 @@ public partial class LoginViewModel(Rest rest) : ViewModelBase
         }
         catch (Exception e)
         {
+            Console.WriteLine(e);
             ShowErrorPopup("Unable to register");
         }
     }
