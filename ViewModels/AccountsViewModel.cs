@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using TravelRecords.Models;
 using TravelRecords.Services;
 
@@ -23,6 +24,11 @@ public partial class AccountsViewModel : ViewModelBase
 
         Accounts = new ObservableCollection<Account>();
         Transactions = new ObservableCollection<Transaction>();
+
+        Messenger.Register<OnAccountAddedMessage>(this, (sender, payload) =>
+        {
+            Accounts.Add(payload.Account);
+        });
 
         _ = _rest.DoAfterUserIsAvailable(async () =>
         {

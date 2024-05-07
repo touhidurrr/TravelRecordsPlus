@@ -8,6 +8,8 @@ using TravelRecords.Services;
 
 namespace TravelRecords.ViewModels;
 
+public record OnAccountAddedMessage(Account Account);
+
 public partial class DashboardViewModel : ViewModelBase
 {
     private Rest _rest;
@@ -46,5 +48,6 @@ public partial class DashboardViewModel : ViewModelBase
         var account = await _rest.AddAccount(new AddAccountInputs(AccountName, AccountBalance));
         if (account is null) return;
         Accounts.Add(account);
+        Messenger.Send(this, new OnAccountAddedMessage(account));
     }
 }

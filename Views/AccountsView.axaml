@@ -55,6 +55,7 @@
 
         <ScrollViewer Grid.Column="1" Background="Azure">
             <StackPanel>
+                <Grid></Grid>
                 <TextBlock FontWeight="Bold"
                            Margin="10"
                            FontSize="20">
