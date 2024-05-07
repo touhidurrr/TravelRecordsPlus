@@ -4,6 +4,8 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="TravelRecords.csproj" />
+        <entry key="Views/AccountsView.axaml" value="TravelRecords.csproj" />
+        <entry key="Views/DashboardView.axaml" value="TravelRecords.csproj" />
         <entry key="Views/LoginView.axaml" value="TravelRecords.csproj" />
         <entry key="Views/MainView.axaml" value="TravelRecords.csproj" />
         <entry key="Views/MainWindow.axaml" value="TravelRecords.csproj" />

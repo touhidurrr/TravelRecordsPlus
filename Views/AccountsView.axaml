@@ -2,10 +2,118 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:TravelRecords.ViewModels"
-             xmlns:mi="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:models="clr-namespace:TravelRecords.Models"
+             xmlns:vm="clr-namespace:TravelRecords.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="TravelRecords.Views.AccountsView"
              x:DataType="vm:AccountsViewModel">
-    <mi:MaterialIcon Kind="AccountBalance" />
+
+    <UserControl.Styles>
+        <Style Selector="ListBox > TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="Auto, *">
+        <ScrollViewer Grid.Column="0" Background="Aquamarine">
+            <StackPanel>
+                <TextBlock FontWeight="Bold"
+                           Margin="10"
+                           FontSize="20">
+                    Accounts
+                </TextBlock>
+                <ListBox MinWidth="120" SelectionMode="Single,AlwaysSelected"
+                         ItemsSource="{Binding Accounts}"
+                         SelectedItem="{Binding SelectedAccount}">
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="Padding" Value="12 10" />
+                        </Style>
+                    </ListBox.Styles>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Account}">
+                            <StackPanel HorizontalAlignment="Right"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalAlignment="Center">
+                                <TextBlock Classes="Headline6" Text="{Binding name }"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body2" Text="{Binding balance}"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body3" Text="Taka"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Column="1" Background="Azure">
+            <StackPanel>
+                <TextBlock FontWeight="Bold"
+                           Margin="10"
+                           FontSize="20">
+                    Transactions
+                </TextBlock>
+                <ListBox MinWidth="120" SelectionMode="Single,AlwaysSelected"
+                         ItemsSource="{Binding Accounts}"
+                         SelectedItem="{Binding SelectedAccount}">
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="Padding" Value="12 10" />
+                        </Style>
+                    </ListBox.Styles>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Account}">
+                            <StackPanel HorizontalAlignment="Right"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalAlignment="Center">
+                                <TextBlock Classes="Headline6" Text="{Binding name }"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body2" Text="{Binding balance}"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body3" Text="Taka"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox MinWidth="120" SelectionMode="Single,AlwaysSelected"
+                         ItemsSource="{Binding Transactions}">
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="Padding" Value="12 10" />
+                        </Style>
+                    </ListBox.Styles>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Transaction}">
+                            <StackPanel HorizontalAlignment="Right"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalAlignment="Center">
+                                <TextBlock Classes="Headline6" Text="{Binding createdAt }"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body2" Text="{Binding amount}"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Classes="Body3" Text="{Binding ref}"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

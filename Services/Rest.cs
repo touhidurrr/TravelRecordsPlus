@@ -23,6 +23,12 @@ public record AddAccountInputs(
     float balance
 );
 
+public record AddTransactionInputs(
+    string @ref,
+    float amount,
+    int accountId
+);
+
 public class Rest
 {
     private RestClient _client;
@@ -80,5 +86,19 @@ public class Rest
             .AddUrlSegment("userId", _user.id)
             .AddJsonBody(addAccountInputs);
         return await _client.PostAsync<Account>(request);
+    }
+
+    public async Task<Transaction[]?> GetTransactions(int accountId)
+    {
+        var request = new RestRequest("/accounts/{accountId}/transactions")
+            .AddUrlSegment("accountId", accountId);
+        return await _client.GetAsync<Transaction[]>(request);
+    }
+
+    public async Task<Transaction?> AddTransaction(AddTransactionInputs inputs)
+    {
+        var request = new RestRequest("/accounts/{accountId}/transactions/add", Method.Post)
+            .AddJsonBody(inputs);
+        return await _client.PostAsync<Transaction>(request);
     }
 }

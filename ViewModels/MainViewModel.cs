@@ -9,26 +9,25 @@ public partial class MainViewModel : ViewModelBase
 {
     private Rest _rest;
 
-    [ObservableProperty] private ListItemTemplate _selectedPageItem;
-
-
-    public ObservableCollection<ListItemTemplate> Items { get; }
+    [ObservableProperty] private PageItemTemplate _selectedPage;
+    public ObservableCollection<PageItemTemplate> Pages { get; }
 
     public MainViewModel(Rest rest = null!)
     {
         _rest = rest;
 
-        Items = new ObservableCollection<ListItemTemplate>(new[]
+        Pages = new ObservableCollection<PageItemTemplate>(new[]
         {
-            new ListItemTemplate("Dashboard", "Dashboard", new DashboardViewModel(_rest)),
-            new ListItemTemplate("Profile", "Profile", new ProfileViewModel(_rest))
+            new PageItemTemplate("Dashboard", "Dashboard", new DashboardViewModel(_rest)),
+            new PageItemTemplate("Accounts", "AccountBalance", new AccountsViewModel(_rest)),
+            new PageItemTemplate("Profile", "Profile", new ProfileViewModel(_rest)),
         });
 
-        SelectedPageItem = Items[0];
+        SelectedPage = Pages[0];
     }
 
-    partial void OnSelectedPageItemChanged(ListItemTemplate value)
+    partial void OnSelectedPageChanged(PageItemTemplate value)
     {
-        SelectedPageItem = value;
+        SelectedPage = value;
     }
 }

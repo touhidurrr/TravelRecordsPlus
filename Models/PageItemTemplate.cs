@@ -2,7 +2,7 @@
 
 namespace TravelRecords.Models;
 
-public class ListItemTemplate
+public class PageItemTemplate
 {
     public string Label { get; }
 
@@ -10,7 +10,7 @@ public class ListItemTemplate
 
     public ViewModelBase ViewModel { get; }
 
-    public ListItemTemplate(string label, string iconKey, ViewModelBase vm)
+    public PageItemTemplate(string label, string iconKey, ViewModelBase vm)
     {
         Label = label;
         IconKind = iconKey;
