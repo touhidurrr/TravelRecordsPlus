@@ -90,14 +90,14 @@ public class Rest
 
     public async Task<Transaction[]?> GetTransactions(int accountId)
     {
-        var request = new RestRequest("/accounts/{accountId}/transactions")
+        var request = new RestRequest("/users/accounts/{accountId}/transactions")
             .AddUrlSegment("accountId", accountId);
         return await _client.GetAsync<Transaction[]>(request);
     }
 
     public async Task<Transaction?> AddTransaction(AddTransactionInputs inputs)
     {
-        var request = new RestRequest("/accounts/{accountId}/transactions/add", Method.Post)
+        var request = new RestRequest("/users/accounts/transactions/add", Method.Post)
             .AddJsonBody(inputs);
         return await _client.PostAsync<Transaction>(request);
     }

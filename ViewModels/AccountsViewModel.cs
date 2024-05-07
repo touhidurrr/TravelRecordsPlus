@@ -22,6 +22,7 @@ public partial class AccountsViewModel : ViewModelBase
         _rest = rest;
 
         Accounts = new ObservableCollection<Account>();
+        Transactions = new ObservableCollection<Transaction>();
 
         _ = _rest.DoAfterUserIsAvailable(async () =>
         {
@@ -33,16 +34,6 @@ public partial class AccountsViewModel : ViewModelBase
                     foreach (var account in accounts)
                         Accounts.Add(account);
                 SelectedAccount = Accounts[0];
-                try
-                {
-                    var transactions = await _rest.GetTransactions(SelectedAccount.id);
-                    Console.WriteLine(transactions);
-                    Transactions = new ObservableCollection<Transaction>(transactions ?? throw new InvalidOperationException());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
             }
             catch (Exception e)
             {
@@ -60,5 +51,27 @@ public partial class AccountsViewModel : ViewModelBase
         var account = await _rest.AddAccount(new AddAccountInputs(AccountName, AccountBalance));
         if (account is null) return;
         Accounts.Add(account);
+    }
+
+    partial void OnSelectedAccountChanged(Account value)
+    {
+        if (Accounts.Count > 0) _ = HandleAccountChangeAsync(value);
+    }
+
+    private async Task HandleAccountChangeAsync(Account value)
+    {
+        try
+        {
+            var transactions = await _rest.GetTransactions(value.id);
+            Console.WriteLine(transactions);
+            Transactions.Clear();
+            if (transactions != null)
+                foreach (var trn in transactions)
+                    Transactions.Add(trn);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }

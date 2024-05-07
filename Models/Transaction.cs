@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace TravelRecords.Models;
 
 public record Transaction(
