@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:TravelRecords.Models"
              xmlns:vm="clr-namespace:TravelRecords.ViewModels"
+             xmlns:ctrl="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="TravelRecords.Views.AccountsView"
              x:DataType="vm:AccountsViewModel">
@@ -55,12 +56,21 @@
 
         <ScrollViewer Grid.Column="1" Background="Azure">
             <StackPanel>
-                <Grid></Grid>
-                <TextBlock FontWeight="Bold"
-                           Margin="10"
-                           FontSize="20">
-                    Transactions
-                </TextBlock>
+                <Grid ColumnDefinitions="*, Auto">
+                    <TextBlock Grid.Column="0" FontWeight="Bold"
+                               Margin="10"
+                               FontSize="20">
+                        Transactions
+                    </TextBlock>
+                    <Button Grid.Column="1" Content="Add"
+                            Margin="10" >
+                        <Button.Flyout>
+                            <Flyout>
+                                <ctrl:Card></ctrl:Card>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
                 <ListBox MinWidth="120"
                          ItemsSource="{Binding Transactions}">
                     <ListBox.Styles>

@@ -43,7 +43,7 @@ public class Rest
 
     public Rest()
     {
-        _client = new RestClient("http://localhost:3000");
+        _client = new RestClient("https://travelrecords.touhidur.tech");
     }
 
     public void SetToken(string token)
