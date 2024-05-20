@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:TravelRecords.Models"
              xmlns:vm="clr-namespace:TravelRecords.ViewModels"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
              xmlns:ctrl="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="TravelRecords.Views.AccountsView"
@@ -47,6 +48,10 @@
                                 <TextBlock Classes="Body3" Text="Taka"
                                            FontWeight="SemiBold"
                                            VerticalAlignment="Center" />
+                                <TextBox
+                                    UseFloatingWatermark="True" Classes="outline dense clearButton"
+                                    Theme="{StaticResource OutlineTextBox}"
+                                    p1:TextFieldAssist.Label="Username or email" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -63,7 +68,7 @@
                         Transactions
                     </TextBlock>
                     <Button Grid.Column="1" Content="Add"
-                            Margin="10" >
+                            Margin="10">
                         <Button.Flyout>
                             <Flyout>
                                 <ctrl:Card></ctrl:Card>

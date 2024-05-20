@@ -45,7 +45,7 @@ public partial class DashboardViewModel : ViewModelBase
     [RelayCommand]
     private async Task AddAccount()
     {
-        var account = await _rest.AddAccount(new AddAccountInputs(AccountName, AccountBalance));
+        var account = await _rest.AddAccount(new AddAccountInputs(AccountName, AccountBalance, _rest.GetUser().id));
         if (account is null) return;
         Accounts.Add(account);
         Messenger.Send(this, new OnAccountAddedMessage(account));

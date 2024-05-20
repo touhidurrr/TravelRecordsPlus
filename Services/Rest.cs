@@ -20,7 +20,8 @@ public record LoginResponse(User user, string token);
 
 public record AddAccountInputs(
     string name,
-    float balance
+    float balance,
+    int userId
 );
 
 public record AddTransactionInputs(
@@ -75,29 +76,28 @@ public class Rest
 
     public async Task<Account[]?> GetAccounts()
     {
-        var request = new RestRequest("/users/{userId}/accounts")
-            .AddUrlSegment("userId", _user.id);
+        var request = new RestRequest("/accounts")
+            .AddParameter("userId", _user.id);
         return await _client.GetAsync<Account[]>(request);
     }
 
     public async Task<Account?> AddAccount(AddAccountInputs addAccountInputs)
     {
-        var request = new RestRequest("/users/{userId}/accounts/add", Method.Post)
-            .AddUrlSegment("userId", _user.id)
+        var request = new RestRequest("/accounts", Method.Post)
             .AddJsonBody(addAccountInputs);
         return await _client.PostAsync<Account>(request);
     }
 
     public async Task<Transaction[]?> GetTransactions(int accountId)
     {
-        var request = new RestRequest("/users/accounts/{accountId}/transactions")
+        var request = new RestRequest("/accounts/{accountId}/transactions")
             .AddUrlSegment("accountId", accountId);
         return await _client.GetAsync<Transaction[]>(request);
     }
 
     public async Task<Transaction?> AddTransaction(AddTransactionInputs inputs)
     {
-        var request = new RestRequest("/users/accounts/transactions/add", Method.Post)
+        var request = new RestRequest("/accounts/transactions", Method.Post)
             .AddJsonBody(inputs);
         return await _client.PostAsync<Transaction>(request);
     }

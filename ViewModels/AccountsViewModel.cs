@@ -25,10 +25,7 @@ public partial class AccountsViewModel : ViewModelBase
         Accounts = new ObservableCollection<Account>();
         Transactions = new ObservableCollection<Transaction>();
 
-        Messenger.Register<OnAccountAddedMessage>(this, (sender, payload) =>
-        {
-            Accounts.Add(payload.Account);
-        });
+        Messenger.Register<OnAccountAddedMessage>(this, (sender, payload) => { Accounts.Add(payload.Account); });
 
         _ = _rest.DoAfterUserIsAvailable(async () =>
         {
@@ -54,7 +51,7 @@ public partial class AccountsViewModel : ViewModelBase
     [RelayCommand]
     private async Task AddAccount()
     {
-        var account = await _rest.AddAccount(new AddAccountInputs(AccountName, AccountBalance));
+        var account = await _rest.AddAccount(new AddAccountInputs(AccountName, AccountBalance, _rest.GetUser().id));
         if (account is null) return;
         Accounts.Add(account);
     }
