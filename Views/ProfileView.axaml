@@ -57,6 +57,7 @@
             <!-- Current Password -->
             <mi:MaterialIcon Grid.Row="3" Grid.Column="0" Kind="Password" />
             <TextBox Grid.Row="3" Grid.Column="1"
+                     Text="{Binding Password}"
                      UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
                      Theme="{StaticResource OutlineTextBox}"
                      p1:TextFieldAssist.Label="Current Password" PasswordChar="*" />
