@@ -37,7 +37,7 @@ public record UpdateUserInputs(
     string? newPassword
 );
 
-public record SuccessResponse(string success);
+public record SuccessResponse(bool success);
 
 public class Rest
 {
@@ -97,6 +97,13 @@ public class Rest
         return await _client.PostAsync<Account>(request);
     }
 
+    public async Task<SuccessResponse?> RemoveAccount(int accountId)
+    {
+        var request = new RestRequest("/accounts/{accountId}", Method.Delete)
+            .AddUrlSegment("accountId", accountId);
+        return await _client.DeleteAsync<SuccessResponse>(request);
+    }
+
     public async Task<Transaction[]?> GetTransactions(int accountId)
     {
         var request = new RestRequest("/accounts/{accountId}/transactions")
@@ -104,11 +111,11 @@ public class Rest
         return await _client.GetAsync<Transaction[]>(request);
     }
 
-    public async Task<Transaction?> AddTransaction(AddTransactionInputs inputs)
+    public async Task<Transaction[]?> AddTransaction(AddTransactionInputs inputs)
     {
         var request = new RestRequest("/accounts/transactions", Method.Post)
             .AddJsonBody(inputs);
-        return await _client.PostAsync<Transaction>(request);
+        return await _client.PostAsync<Transaction[]>(request);
     }
 
     public async Task<SuccessResponse?> UpdateUser(int userId, UpdateUserInputs inputs)

@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:TravelRecords.Models"
              xmlns:vm="clr-namespace:TravelRecords.ViewModels"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             xmlns:mi="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              xmlns:ctrl="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
              x:Class="TravelRecords.Views.AccountsView"
@@ -24,7 +26,8 @@
                            FontSize="20">
                     Accounts
                 </TextBlock>
-                <ListBox MinWidth="120" SelectionMode="Single,AlwaysSelected"
+                <ListBox x:Name="AccountsListBox"
+                         MinWidth="120" SelectionMode="Single,AlwaysSelected"
                          ItemsSource="{Binding Accounts}"
                          SelectedItem="{Binding SelectedAccount}">
                     <ListBox.Styles>
@@ -47,6 +50,12 @@
                                 <TextBlock Classes="Body3" Text="Taka"
                                            FontWeight="SemiBold"
                                            VerticalAlignment="Center" />
+                                <Button
+                                    Command="{Binding $parent[ListBox].((vm:AccountsViewModel)DataContext).RemoveAccountCommand}"
+                                    CommandParameter="{Binding id}">
+                                    <mi:MaterialIcon Kind="Delete" />
+                                </Button>
+
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -54,7 +63,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <ScrollViewer Grid.Column="1" Background="Azure">
+        <ScrollViewer Grid.Column="1">
             <StackPanel>
                 <Grid ColumnDefinitions="*, Auto">
                     <TextBlock Grid.Column="0" FontWeight="Bold"
@@ -66,7 +75,19 @@
                             Margin="10">
                         <Button.Flyout>
                             <Flyout>
-                                <ctrl:Card />
+                                <ctrl:Card>
+                                    <StackPanel Spacing="5">
+                                        <NumericUpDown
+                                            Value="{Binding AddTransactionAmount}"
+                                            Watermark="Amount" Foreground="Black" />
+                                        <TextBox
+                                            Text="{Binding AddTransactionRef}"
+                                            UseFloatingWatermark="True" Classes="outline"
+                                            Theme="{StaticResource OutlineTextBox}"
+                                            p1:TextFieldAssist.Label="Reference" Foreground="Black" />
+                                        <Button Content="Add" Command="{Binding AddTransactionCommand}" />
+                                    </StackPanel>
+                                </ctrl:Card>
                             </Flyout>
                         </Button.Flyout>
                     </Button>

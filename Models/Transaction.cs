@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace TravelRecords.Models;
 
 public record Transaction(
@@ -7,6 +5,5 @@ public record Transaction(
     string @ref,
     float amount,
     string createdAt,
-    int ownerId,
     int accountId
 );
