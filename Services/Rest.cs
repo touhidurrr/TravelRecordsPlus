@@ -30,6 +30,15 @@ public record AddTransactionInputs(
     int accountId
 );
 
+public record UpdateUserInputs(
+    string? name,
+    string? email,
+    string? password,
+    string? newPassword
+);
+
+public record SuccessResponse(string success);
+
 public class Rest
 {
     private RestClient _client;
@@ -100,5 +109,13 @@ public class Rest
         var request = new RestRequest("/accounts/transactions", Method.Post)
             .AddJsonBody(inputs);
         return await _client.PostAsync<Transaction>(request);
+    }
+
+    public async Task<SuccessResponse?> UpdateUser(int userId, UpdateUserInputs inputs)
+    {
+        var request = new RestRequest("/users/{userId}", Method.Patch)
+            .AddUrlSegment("userId", userId)
+            .AddJsonBody(inputs);
+        return await _client.PatchAsync<SuccessResponse>(request);
     }
 }

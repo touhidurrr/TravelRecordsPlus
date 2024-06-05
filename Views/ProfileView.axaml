@@ -27,7 +27,6 @@
         HorizontalAlignment="Center" VerticalAlignment="Center">
 
         <Grid
-            ShowGridLines="True"
             ColumnDefinitions="Auto, *"
             RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
             <!-- Name -->
@@ -65,6 +64,7 @@
             <!-- New Password -->
             <mi:MaterialIcon Grid.Row="4" Grid.Column="0" Kind="PasswordAdd" />
             <TextBox Grid.Row="4" Grid.Column="1"
+                     Text="{Binding NewPassword}"
                      UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
                      Theme="{StaticResource OutlineTextBox}"
                      p1:TextFieldAssist.Label="New Password" PasswordChar="*" />
@@ -72,6 +72,7 @@
             <!-- Confirm New Password -->
             <mi:MaterialIcon Grid.Row="5" Grid.Column="0" Kind="PasswordSecure" />
             <TextBox Grid.Row="5" Grid.Column="1"
+                     Text="{Binding ConfirmNewPassword}"
                      UseFloatingWatermark="True" Classes="outline dense revealPasswordButton"
                      Theme="{StaticResource OutlineTextBox}"
                      p1:TextFieldAssist.Label="Confirm New Password" PasswordChar="*" />
@@ -79,7 +80,8 @@
 
         <Button Classes="light" Width="100" Content="Save"
                 ToolTip.Placement="RightEdgeAlignedTop"
-                ToolTip.Tip="Save Changes" />
+                ToolTip.Tip="Save Changes"
+                Command="{Binding SaveCommand}" />
 
     </StackPanel>
 </UserControl>

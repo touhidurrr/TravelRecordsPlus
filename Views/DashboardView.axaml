@@ -53,7 +53,7 @@
                             </Button.Flyout>
                         </ctrl:FloatingButton>
 
-                        <ScrollViewer Grid.Row="1">
+                        <ScrollViewer Grid.Column="0" Grid.Row="1">
                             <ListBox MinWidth="120"
                                      ItemsSource="{Binding Accounts}">
                                 <ListBox.Styles>
