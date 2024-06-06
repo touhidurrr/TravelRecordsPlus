@@ -145,10 +145,10 @@ public class Rest
         return await _client.GetAsync<TravelRecord[]>(request);
     }
 
-    public async Task<User[]?> GetPartners(int id)
+    public async Task<User[]?> GetPartners(int recordId)
     {
-        var request = new RestRequest("/records/{id}/partners")
-            .AddUrlSegment("id", id);
+        var request = new RestRequest("/records/{recordId}/partners")
+            .AddUrlSegment("recordId", recordId);
         return await _client.GetAsync<User[]>(request);
     }
 
@@ -158,5 +158,20 @@ public class Rest
             .AddUrlSegment("recordId", recordId)
             .AddJsonBody(new { email });
         return await _client.PostAsync<User>(request);
+    }
+    
+    public async Task<Expense[]?> GetExpenses(int recordId)
+    {
+        var request = new RestRequest("/records/{recordId}/expenses")
+            .AddUrlSegment("recordId", recordId);
+        return await _client.GetAsync<Expense[]>(request);
+    }
+
+    public async Task<Expense?> AddExpense(int recordId, string title, float amount)
+    {
+        var request = new RestRequest("/records/{recordId}/expenses", Method.Post)
+            .AddUrlSegment("recordId", recordId)
+            .AddJsonBody(new { title, amount });
+        return await _client.PostAsync<Expense>(request);
     }
 }

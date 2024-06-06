@@ -15,9 +15,12 @@ public partial class TravelRecordsViewModel : ViewModelBase
     [ObservableProperty] private string _newFrom = "";
     [ObservableProperty] private string _newTo = "";
     [ObservableProperty] private string _newPartnerEmail = "";
+    [ObservableProperty] private string _newExpenseTitle = "";
+    [ObservableProperty] private float _newExpenseAmount = 0;
 
     public ObservableCollection<TravelRecord> TravelRecords { get; set; }
     public ObservableCollection<User> Partners { get; set; }
+    public ObservableCollection<Expense> Expenses { get; set; }
     [ObservableProperty] private TravelRecord? _selectedTravelRecord;
 
     public TravelRecordsViewModel(Rest rest)
@@ -25,6 +28,7 @@ public partial class TravelRecordsViewModel : ViewModelBase
         _rest = rest;
         TravelRecords = new ObservableCollection<TravelRecord>();
         Partners = new ObservableCollection<User>();
+        Expenses = new ObservableCollection<Expense>();
         _ = _rest.DoAfterUserIsAvailable(async () => { await RefreshTravelRecords(); });
     }
 
@@ -47,6 +51,16 @@ public partial class TravelRecordsViewModel : ViewModelBase
             foreach (var user in users)
                 Partners.Add(user);
     }
+    
+    private async Task RefreshExpenses()
+    {
+        Expenses.Clear();
+        var expenses = await _rest.GetExpenses(SelectedTravelRecord.id);
+        Console.WriteLine(expenses);
+        if (expenses != null)
+            foreach (var ex in expenses)
+                Expenses.Add(ex);
+    }
 
 
     [RelayCommand]
@@ -60,6 +74,25 @@ public partial class TravelRecordsViewModel : ViewModelBase
             if (newTravelRecord != null)
             {
                 TravelRecords.Add(newTravelRecord);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+    
+    [RelayCommand]
+    private async Task AddExpense()
+    {
+        try
+        {
+            var newExpense =
+                await _rest.AddExpense(SelectedTravelRecord.id, NewExpenseTitle, NewExpenseAmount);
+            Console.WriteLine(newExpense);
+            if (newExpense != null)
+            {
+                Expenses.Add(newExpense);
             }
         }
         catch (Exception e)
@@ -87,5 +120,6 @@ public partial class TravelRecordsViewModel : ViewModelBase
     {
         if (TravelRecords.Count < 1) return;
         RefreshPartners();
+        RefreshExpenses();
     }
 }

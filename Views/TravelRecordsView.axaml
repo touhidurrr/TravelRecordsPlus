@@ -139,6 +139,60 @@
                     </StackPanel>
 
                 </ScrollViewer>
+
+                <ScrollViewer Grid.Column="1" Margin="5">
+
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Grid.Row="0" Classes="Headline6" Text="Expenses"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                            <Button Content="Add">
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <ctrl:Card>
+                                            <StackPanel Spacing="5">
+                                                <TextBox
+                                                    Text="{Binding NewExpenseTitle}"
+                                                    UseFloatingWatermark="True" Classes="outline"
+                                                    Theme="{StaticResource OutlineTextBox}"
+                                                    p1:TextFieldAssist.Label="Title" Foreground="Black" />
+                                                <NumericUpDown
+                                                    Value="{Binding NewExpenseAmount}"
+                                                    Watermark="Amount" Foreground="Black" />
+                                                <Button Content="Add!"
+                                                        Command="{Binding AddExpenseCommand}" />
+                                            </StackPanel>
+                                        </ctrl:Card>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
+                        </StackPanel>
+                        <ListBox
+                            MinWidth="120"
+                            ItemsSource="{Binding Expenses}">
+                            <ListBox.Styles>
+                                <Style Selector="ListBoxItem">
+                                    <Setter Property="Padding" Value="12 10" />
+                                </Style>
+                            </ListBox.Styles>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type models:Expense}">
+                                    <StackPanel HorizontalAlignment="Right"
+                                                Orientation="Horizontal"
+                                                Spacing="10"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding title }" />
+                                        <TextBlock Text=" " />
+                                        <TextBlock Text="{Binding amount }" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+
+                </ScrollViewer>
             </Grid>
         </Grid>
     </Grid>
