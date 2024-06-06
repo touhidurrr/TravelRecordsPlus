@@ -15,7 +15,7 @@ public partial class AccountsViewModel : ViewModelBase
     private Rest _rest;
 
     [ObservableProperty] private Account _selectedAccount;
-    [ObservableProperty] private string _addTransactionRef = "";
+    [ObservableProperty] private string? _addTransactionRef = "";
     [ObservableProperty] private float _addTransactionAmount = 0;
 
     public ObservableCollection<Account> Accounts { get; }

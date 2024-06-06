@@ -25,7 +25,7 @@ public record AddAccountInputs(
 );
 
 public record AddTransactionInputs(
-    string @ref,
+    string? @ref,
     float amount,
     int accountId
 );
