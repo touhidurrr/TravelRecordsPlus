@@ -14,8 +14,6 @@ public record RegisterInputs(
     string password
 );
 
-public record User(int id, string name, string email, string username);
-
 public record LoginResponse(User user, string token);
 
 public record AddAccountInputs(
@@ -38,6 +36,13 @@ public record UpdateUserInputs(
 );
 
 public record SuccessResponse(bool success);
+
+public record AddTravelRecordInputs(
+    int ownerId,
+    string title,
+    string from,
+    string to
+);
 
 public class Rest
 {
@@ -124,5 +129,34 @@ public class Rest
             .AddUrlSegment("userId", userId)
             .AddJsonBody(inputs);
         return await _client.PatchAsync<SuccessResponse>(request);
+    }
+
+    public async Task<TravelRecord?> AddTravelRecord(AddTravelRecordInputs inputs)
+    {
+        var request = new RestRequest("/records", Method.Post)
+            .AddJsonBody(inputs);
+        return await _client.PostAsync<TravelRecord>(request);
+    }
+
+    public async Task<TravelRecord[]?> GetTravelRecords()
+    {
+        var request = new RestRequest("/records")
+            .AddParameter("userId", _user.id);
+        return await _client.GetAsync<TravelRecord[]>(request);
+    }
+
+    public async Task<User[]?> GetPartners(int id)
+    {
+        var request = new RestRequest("/records/{id}/partners")
+            .AddUrlSegment("id", id);
+        return await _client.GetAsync<User[]>(request);
+    }
+
+    public async Task<User?> AddPartner(int recordId, string email)
+    {
+        var request = new RestRequest("/records/{recordId}/partners", Method.Post)
+            .AddUrlSegment("recordId", recordId)
+            .AddJsonBody(new { email });
+        return await _client.PostAsync<User>(request);
     }
 }

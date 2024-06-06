@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using TravelRecords.Models;
 using TravelRecords.Services;
 
 namespace TravelRecords.ViewModels;

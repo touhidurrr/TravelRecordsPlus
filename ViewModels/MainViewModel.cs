@@ -20,7 +20,8 @@ public partial class MainViewModel : ViewModelBase
         {
             new PageItemTemplate("Dashboard", "Dashboard", new DashboardViewModel(_rest)),
             new PageItemTemplate("Accounts", "AccountBalance", new AccountsViewModel(_rest)),
-            new PageItemTemplate("Profile", "Profile", new ProfileViewModel(_rest)),
+            new PageItemTemplate("TravelRecords", "Travel", new TravelRecordsViewModel(_rest)),
+            new PageItemTemplate("Profile", "User", new ProfileViewModel(_rest)),
         });
 
         SelectedPage = Pages[0];
